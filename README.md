@@ -9,20 +9,88 @@ package tty
 
     Package tty provides primitives to communicate with the terminal
 
-	  DefaultTty.Open()
-	  defer DefaultTty.Close()
+	tty.Open()
+	defer tty.Close()
 
-	  DefaultTty.MoveTo(y+2, x+1)
-	  DefaultTty.SetDefaultColor()
-	  DefaultTty.EraseLine()
-	  DefaultTty.SetBgColor(20, 133, 204)
-	  DefaultTty.SetFgColor(178, 18, 18)
-	  DefaultTty.SetBold()
-	  DefaultTty.SetUnderscore()
-	  DefaultTty.SetReverse()
-	  DefaultTty.Write([]byte("Bold"))
-	  DefaultTty.SetNoBlink()
-	  DefaultTty.Flush()
+	rows, cols, err := tty.Dimensions()
+
+	tty.MoveTo(2, 1)
+	tty.SetDefaultColor()
+	tty.SetBgColor(20, 133, 204)
+	tty.SetFgColor(178, 18, 18)
+	tty.SetBold()
+	tty.SetUnderscore()
+	tty.SetReverse()
+	tty.SetBlink()
+	tty.Write([]byte("Bold"))
+
+FUNCTIONS
+
+func Clean()
+    Clean cleans all the screen
+
+func Close() error
+    Close will restore the terminal to the initial state
+
+func Dimensions() (height, width int, err error)
+    Dimensions returns terminal dimensions
+
+func EraseLine()
+    EraseLine removes all the text in the line
+
+func Flush() (n int, e error)
+    Flush takes all the previous writes and flush them to Stdout
+
+func MoveTo(line, pos int)
+    MoveTo makes the next text to be writen in a specific position
+
+func Open() (err error)
+    Open will put the terminal in Raw mode and clean the scree
+
+func Read(data []byte) (n int, e error)
+    Read reads data from for Stdout If InputDelay is different than 0, a
+    buffer will be use and a call to Read will not imply a call to
+    Stdin.Read
+
+func SetBgColor(r, g, b int)
+    SetBgColor set the background color for the next text to be writen
+
+func SetBlink()
+    SetBlink makes next text to be writen to blink
+
+func SetBold()
+    SetBold makes the next text to be writen to be bold
+
+func SetDefaultBgColor()
+    SetDefaultBgColor makes the next text to be writen to use the default
+    Background color
+
+func SetDefaultColor()
+    SetDefaultColor is the same as calling SetDefaultFgColor and
+    SetDefaultBgColor
+
+func SetDefaultFgColor()
+    SetDefaultFgColor makes the next text to be writen to use the default
+    Foreground color
+
+func SetFgColor(r, g, b int)
+    SetFgColor set the foreground color for the next text to be writen
+
+func SetNoBlink()
+    SetNoBlink makes next text to be writen not to blink
+
+func SetNormal()
+    SetNormal disables Bold Underlink Reverse and Blink for the next text to
+    be writen
+
+func SetReverse()
+    SetReverse makes the next text to be writen to be with reversed colors
+
+func SetUnderscore()
+    SetUnderscore makes the next text to be writen to have underscore
+
+func Write(data []byte) (n int, e error)
+    Writes data to the Stdout If Fps is not 0 it will buffer the data
 
 TYPES
 
