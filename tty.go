@@ -1,19 +1,19 @@
 // Package tty provides primitives to communicate with the terminal
 //
-//   DefaultTty.Open()
-//   defer DefaultTty.Close()
+//   tty.Open()
+//   defer tty.Close()
 //
-//   DefaultTty.MoveTo(y+2, x+1)
-//   DefaultTty.SetDefaultColor()
-//   DefaultTty.EraseLine()
-//   DefaultTty.SetBgColor(20, 133, 204)
-//   DefaultTty.SetFgColor(178, 18, 18)
-//   DefaultTty.SetBold()
-//   DefaultTty.SetUnderscore()
-//   DefaultTty.SetReverse()
-//   DefaultTty.Write([]byte("Bold"))
-//   DefaultTty.SetNoBlink()
-//   DefaultTty.Flush()
+//   rows, cols, err := tty.Dimensions()
+//
+//   tty.MoveTo(2, 1)
+//   tty.SetDefaultColor()
+//   tty.SetBgColor(20, 133, 204)
+//   tty.SetFgColor(178, 18, 18)
+//   tty.SetBold()
+//   tty.SetUnderscore()
+//   tty.SetReverse()
+//   tty.SetBlink()
+//   tty.Write([]byte("Bold"))
 //
 package tty
 
